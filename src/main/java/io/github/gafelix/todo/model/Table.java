@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static io.github.gafelix.todo.config.ModelConstraints.TABLE_LABEL_MAX_LENGTH;
+import static io.github.gafelix.todo.config.ModelConstraints.TABLE_MAX_COLUMNS;
 
 public class Table {
 
@@ -23,6 +24,8 @@ public class Table {
         @NonNull
         @Size(max = TABLE_LABEL_MAX_LENGTH)
         private String label;
+
+        @Size(max = TABLE_MAX_COLUMNS)
         private final List<Card> cards = new LinkedList<>();
 
     }
