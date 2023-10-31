@@ -19,16 +19,16 @@ public class Table {
     private final List<Column> columns = new LinkedList<>();
 
     @Getter
+    @Setter
     @RequiredArgsConstructor
     private static class Column {
 
-        @Setter
         @NonNull
         @Size(max = TABLE_LABEL_MAX_LENGTH)
         private String label;
 
         @Size(max = TABLE_MAX_COLUMNS)
-        private final List<Card> cards = new LinkedList<>();
+        private List<Card> cards = new LinkedList<>();
 
     }
 }
