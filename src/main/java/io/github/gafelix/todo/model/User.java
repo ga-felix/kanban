@@ -1,6 +1,7 @@
 package io.github.gafelix.todo.model;
 
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NonNull;
@@ -17,16 +18,16 @@ import static io.github.gafelix.todo.config.ModelConstraints.*;
 public class User {
 
     @Size(min= USERNAME_MIN_SIZE, max= USERNAME_MAX_SIZE)
-    @NonNull
+    @NonNull @NotNull
     private String username;
 
     @Id
     @Size(min = EMAIL_MIN_SIZE, max = EMAIL_MAX_SIZE)
-    @NonNull
+    @NonNull @NotNull
     private String email;
 
     @Size(min = PASSWORD_MIN_SIZE, max = PASSWORD_MAX_SIZE)
-    @NonNull
+    @NonNull @NotNull
     private String password;
 
     private final List<String> knownTablesIds = new ArrayList<>(USERNAME_MAX_TABLES);

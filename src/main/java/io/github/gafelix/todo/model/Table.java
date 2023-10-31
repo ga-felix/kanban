@@ -1,5 +1,6 @@
 package io.github.gafelix.todo.model;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -13,6 +14,7 @@ import static io.github.gafelix.todo.config.ModelConstraints.TABLE_MAX_COLUMNS;
 public class Table {
 
     @Id
+    @NotNull
     private String id;
     private final List<Column> columns = new LinkedList<>();
 
