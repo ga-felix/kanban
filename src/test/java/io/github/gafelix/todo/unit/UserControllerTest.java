@@ -1,7 +1,7 @@
 package io.github.gafelix.todo.unit;
 
 import io.github.gafelix.todo.controller.UserController;
-import io.github.gafelix.todo.exceptions.UserAlreadyExistsException;
+import io.github.gafelix.todo.exceptions.EntityAlreadyExistsException;
 import io.github.gafelix.todo.model.User;
 import io.github.gafelix.todo.service.UserRegister;
 import org.junit.jupiter.api.Test;
@@ -74,7 +74,7 @@ public class UserControllerTest {
         var payload = format(
                 "{\"username\": \"%s\", \"email\": \"%s\", \"password\": \"%s\"}",
                 "banana", "cyborg24@email.com", "abc1234");
-        when(userRegisterImp.register(Mockito.any(User.class))).thenThrow(new UserAlreadyExistsException());
+        when(userRegisterImp.register(Mockito.any(User.class))).thenThrow(new EntityAlreadyExistsException());
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
