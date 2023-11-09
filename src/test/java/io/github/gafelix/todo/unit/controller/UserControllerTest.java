@@ -1,4 +1,4 @@
-package io.github.gafelix.todo.unit;
+package io.github.gafelix.todo.unit.controller;
 
 import io.github.gafelix.todo.controller.UserController;
 import io.github.gafelix.todo.exceptions.EntityAlreadyExistsException;
@@ -29,7 +29,7 @@ public class UserControllerTest {
     private UserRegister userRegisterImp;
 
     @Test
-    void shouldReturnCreatedCodeAndLocationHeaderAfterCreatingNewUser() throws Exception {
+    void givenValidUser_whenRegistering_thenReturnLocationAndCreated() throws Exception {
         var payload = format(
                 "{\"username\": \"%s\", \"email\": \"%s\", \"password\": \"%s\"}",
                 "banana", "cyborg24@email.com", "abc1234");
@@ -46,7 +46,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void shouldReturnBadRequestWhenCreatingUserWithMissingFields() throws Exception {
+    void givenUserWithMissingFields_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
                 "{\"username\": \"%s\",\"email\": \"%s\"}",
                 "banana", "cyborg24@email.com");
@@ -58,7 +58,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void shouldReturnBadRequestWhenCreatingUserWithInvalidFields() throws Exception {
+    void givenUserWithInvalidFields_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
                 "{\"username\": \"%s\",\"email\": \"%s\",\"password\": \"abc\"}",
                 "banana", "cyborg24@email.com");
@@ -70,7 +70,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void shouldReturnBadRequestWhenCreatingAlreadyExistingUser() throws Exception {
+    void givenAlreadyExistingUser_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
                 "{\"username\": \"%s\", \"email\": \"%s\", \"password\": \"%s\"}",
                 "banana", "cyborg24@email.com", "abc1234");
