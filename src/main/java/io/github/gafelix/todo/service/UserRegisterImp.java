@@ -13,7 +13,7 @@ public class UserRegisterImp implements UserRegister {
     private UserRepository userRepository;
     @Override
     public User register (User user) throws EntityAlreadyExistsException {
-        if(userRepository.findById(user.getEmail()).isPresent()) return userRepository.save(user);
+        if(userRepository.findById(user.getEmail()).isEmpty()) return userRepository.save(user);
         throw new EntityAlreadyExistsException();
     }
 }
