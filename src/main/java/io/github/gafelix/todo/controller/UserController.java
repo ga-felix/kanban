@@ -20,7 +20,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         var uri = UriComponentsBuilder
                 .fromPath("/user/{id}")
-                .buildAndExpand(user.getEmail())
+                .buildAndExpand(user.getId())
                 .toUri();
         return ResponseEntity
                 .created(uri)

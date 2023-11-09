@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -28,7 +25,7 @@ public class User {
     @Size(min = EMAIL_MIN_SIZE, max = EMAIL_MAX_SIZE)
     @NonNull @NotNull
     @Getter
-    private String email;
+    private String id;
 
     @Size(min = PASSWORD_MIN_SIZE, max = PASSWORD_MAX_SIZE)
     @NonNull @NotNull

@@ -28,12 +28,12 @@ class UserRegisterImpTest {
     @Test
     void givenNewUser_whenRegistering_thenCreateNewUserOnDB() {
         when(userRepository.save(newUser)).thenReturn(newUser);
-        assertEquals(userRegister.register(newUser).getEmail(), newUser.getEmail());
+        assertEquals(userRegister.register(newUser).getId(), newUser.getId());
     }
 
     @Test
     void givenAlreadyExistingUser_whenRegistering_thenThrowException() {
-        when(userRepository.findById(newUser.getEmail())).thenReturn(Optional.of(newUser));
+        when(userRepository.findById(newUser.getId())).thenReturn(Optional.of(newUser));
         assertThrows(EntityAlreadyExistsException.class, () -> userRegister.register(newUser));
     }
 

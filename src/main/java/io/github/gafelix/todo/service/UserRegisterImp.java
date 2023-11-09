@@ -17,5 +17,5 @@ public class UserRegisterImp implements UserRegister {
         throw new EntityAlreadyExistsException();
     }
 
-    private boolean isNewUser(User user) { return userRepository.findById(user.getEmail()).isEmpty(); }
+    private boolean isNewUser(User user) { return userRepository.findById(user.getId()).isEmpty(); }
 }
