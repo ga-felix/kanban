@@ -23,8 +23,11 @@ class UserRegisterImpTest {
     @Autowired
     private UserRegister userRegister;
 
-    private final User newUser = new User("skeletonsRevenge", "iLoveBarnacles@email.com", "securepassword123");
-
+    private final User newUser = User.builder()
+            .id("iLoveBarnacles@email.com")
+            .username("PadariaDoce")
+            .password("securepassword123")
+            .build();
     @Test
     void givenNewUser_whenRegistering_thenCreateNewUserOnDB() {
         when(userRepository.save(newUser)).thenReturn(newUser);

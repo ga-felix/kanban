@@ -1,7 +1,7 @@
 package io.github.gafelix.todo.controller;
 
-import io.github.gafelix.todo.service.UserRegister;
-import io.github.gafelix.todo.model.User;
+import io.github.gafelix.todo.request.ServiceDTO;
+import io.github.gafelix.todo.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +14,17 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class UserController {
 
     @Autowired
-    private UserRegister userRegisterServiceImp;
+    private UserService userService;
 
     @PostMapping("/user")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<ServiceDTO> createUser(@Valid @RequestBody ServiceDTO request) {
         var uri = UriComponentsBuilder
                 .fromPath("/user/{id}")
-                .buildAndExpand(user.getId())
+                .buildAndExpand(request.getUserId())
                 .toUri();
         return ResponseEntity
                 .created(uri)
-                .body(userRegisterServiceImp.register(user));
+                .body(userService.register(request));
     }
 
 }

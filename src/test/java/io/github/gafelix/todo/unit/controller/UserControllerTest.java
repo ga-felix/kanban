@@ -2,8 +2,8 @@ package io.github.gafelix.todo.unit.controller;
 
 import io.github.gafelix.todo.controller.UserController;
 import io.github.gafelix.todo.exceptions.EntityAlreadyExistsException;
-import io.github.gafelix.todo.model.User;
-import io.github.gafelix.todo.service.UserRegister;
+import io.github.gafelix.todo.request.ServiceDTO;
+import io.github.gafelix.todo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +26,12 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserRegister userRegisterImp;
+    private UserService userService;
 
     @Test
     void givenValidUser_whenRegistering_thenReturnLocationAndCreated() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\", \"email\": \"%s\", \"password\": \"%s\"}",
+                "{\"username\": \"%s\", \"userId\": \"%s\", \"password\": \"%s\"}",
                 "banana", "cyborg24@email.com", "abc1234");
         var resourceUri = UriComponentsBuilder
                 .fromPath("/user/{id}")
@@ -48,7 +48,7 @@ public class UserControllerTest {
     @Test
     void givenUserWithMissingFields_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\",\"email\": \"%s\"}",
+                "{\"username\": \"%s\",\"userId\": \"%s\"}",
                 "banana", "cyborg24@email.com");
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -60,7 +60,7 @@ public class UserControllerTest {
     @Test
     void givenUserWithInvalidFields_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\",\"email\": \"%s\",\"password\": \"abc\"}",
+                "{\"username\": \"%s\",\"userId\": \"%s\",\"password\": \"abc\"}",
                 "banana", "cyborg24@email.com");
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -72,9 +72,9 @@ public class UserControllerTest {
     @Test
     void givenAlreadyExistingUser_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\", \"email\": \"%s\", \"password\": \"%s\"}",
+                "{\"username\": \"%s\", \"userId\": \"%s\", \"password\": \"%s\"}",
                 "banana", "cyborg24@email.com", "abc1234");
-        when(userRegisterImp.register(Mockito.any(User.class))).thenThrow(new EntityAlreadyExistsException());
+        when(userService.register(Mockito.any(ServiceDTO.class))).thenThrow(new EntityAlreadyExistsException());
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))

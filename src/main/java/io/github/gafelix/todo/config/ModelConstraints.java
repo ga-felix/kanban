@@ -24,5 +24,6 @@ public class ModelConstraints {
     /* Table model constraints. */
     public static final byte TABLE_MAX_COLUMNS = 8;
     public static final byte TABLE_LABEL_MAX_LENGTH = 8;
+    public static final byte TABLE_MAX_ID_SIZE = 64;
 
 }
