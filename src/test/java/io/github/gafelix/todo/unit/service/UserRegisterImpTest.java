@@ -26,7 +26,6 @@ class UserRegisterImpTest {
     private final User newUser = User.builder()
             .id("iLoveBarnacles@email.com")
             .username("PadariaDoce")
-            .password("securepassword123")
             .build();
     @Test
     void givenNewUser_whenRegistering_thenCreateNewUserOnDB() {

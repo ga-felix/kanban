@@ -12,12 +12,7 @@ public class UserServiceMapperImpl implements UserServiceMapper {
         return User.builder()
                 .id(request.getUserId())
                 .username(request.getUsername())
-                .password(getPassword(request))
                 .build();
-    }
-
-    private String getPassword(ServiceDTO request) {
-        return (request.getPassword() != null ? request.getPassword() : "");
     }
 
 }

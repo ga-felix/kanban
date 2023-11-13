@@ -48,8 +48,7 @@ public class UserControllerTest {
     @Test
     void givenUserWithMissingFields_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\",\"userId\": \"%s\"}",
-                "banana", "cyborg24@email.com");
+                "{\"userId\": \"%s\"}", "banana");
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
@@ -60,8 +59,8 @@ public class UserControllerTest {
     @Test
     void givenUserWithInvalidFields_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\",\"userId\": \"%s\",\"password\": \"abc\"}",
-                "banana", "cyborg24@email.com");
+                "{\"username\": \"%s\",\"userId\": \"%s\"}",
+                "banana", "123");
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))

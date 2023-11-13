@@ -17,7 +17,6 @@ public class User {
     private String username;
     @Id
     private String id;
-    private String password;
     private final List<String> knownTablesIds = new ArrayList<>(USERNAME_MAX_TABLES);
 
 }

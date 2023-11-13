@@ -21,10 +21,6 @@ public class ServiceDTO {
     @Email
     private String userId;
 
-    @Size(min = PASSWORD_MIN_SIZE, max = PASSWORD_MAX_SIZE)
-    @NotNull
-    private String password;
-
     @Size(max = TABLE_MAX_ID_SIZE)
     private String tableId;
 
