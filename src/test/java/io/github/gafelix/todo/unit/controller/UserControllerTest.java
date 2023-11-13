@@ -31,8 +31,7 @@ public class UserControllerTest {
     @Test
     void givenValidUser_whenRegistering_thenReturnLocationAndCreated() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\", \"userId\": \"%s\", \"password\": \"%s\"}",
-                "banana", "cyborg24@email.com", "abc1234");
+                "{\"username\": \"%s\", \"userId\": \"%s\"}", "banana", "cyborg24@email.com");
         var resourceUri = UriComponentsBuilder
                 .fromPath("/user/{id}")
                 .buildAndExpand("cyborg24@email.com")
@@ -59,8 +58,7 @@ public class UserControllerTest {
     @Test
     void givenUserWithInvalidFields_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\",\"userId\": \"%s\"}",
-                "banana", "123");
+                "{\"username\": \"%s\",\"userId\": \"%s\"}", "banana", "123");
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
@@ -71,8 +69,7 @@ public class UserControllerTest {
     @Test
     void givenAlreadyExistingUser_whenRegistering_thenReturnBadRequest() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\", \"userId\": \"%s\", \"password\": \"%s\"}",
-                "banana", "cyborg24@email.com", "abc1234");
+                "{\"username\": \"%s\", \"userId\": \"%s\"}", "banana", "cyborg24@email.com");
         when(userService.register(Mockito.any(ServiceDTO.class))).thenThrow(new EntityAlreadyExistsException());
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
