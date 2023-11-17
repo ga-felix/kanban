@@ -24,7 +24,6 @@ public class ServiceDTO {
     @Email
     private String userId;
 
-    @NotNull
     private List<Table> tables;
 
 }

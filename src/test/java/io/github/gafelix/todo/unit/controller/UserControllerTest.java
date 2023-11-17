@@ -78,9 +78,4 @@ public class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    void givenValidUserAndTableIds_whenAddingTables_thenReturnCreated() {
-        var payload = format("{\"username\": \"%s\", \"userId\": \"%s\", \"tableIds\": [""]}");
-    }
-
 }

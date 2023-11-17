@@ -2,21 +2,18 @@ package io.github.gafelix.todo.service;
 
 import io.github.gafelix.todo.request.ServiceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-
-@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserServiceMapper mapper;
+    private ServiceDtoMapper dtoMapper;
 
     @Autowired
     private UserRegister userRegister;
 
     @Override
     public ServiceDTO register(ServiceDTO request) {
-        var newUser = userRegister.register(mapper.map(request));
+        var newUser = userRegister.register(dtoMapper.toUser(request));
         return ServiceDTO.builder()
                 .userId(newUser.getId())
                 .username(newUser.getUsername())
@@ -24,18 +21,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ServiceDTO login(ServiceDTO request) {
+    public ServiceDTO writeTable(ServiceDTO request) {
         return null;
     }
 
     @Override
-    public ServiceDTO addTables(ServiceDTO request) {
+    public ServiceDTO deleteTable(ServiceDTO request) {
         return null;
     }
-    @Override
-    public ServiceDTO removeTables(ServiceDTO request) {
-        return null;
-    }
+
     @Override
     public ServiceDTO getTables(ServiceDTO request) {
         return null;

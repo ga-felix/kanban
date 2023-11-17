@@ -37,9 +37,7 @@ public class UserController {
                 .fromPath("/user/{id}/table")
                 .buildAndExpand(request.getUserId())
                 .toUri();
-        return ResponseEntity
-                .created(uri)
-                .body(userService.addTables(request));
+        return null;
     }
 
     @DeleteMapping("/user/{userId}/table/{tableId}")
