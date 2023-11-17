@@ -15,6 +15,5 @@ public class Card {
 
     private String title;
     private String description;
-    private final List<String> assignees = new ArrayList<>(CARD_MAX_ASSIGNEES);
 
 }
