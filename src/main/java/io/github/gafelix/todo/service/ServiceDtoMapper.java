@@ -7,6 +7,5 @@ import io.github.gafelix.todo.request.ServiceDTO;
 public interface ServiceDtoMapper {
 
     User toUser(ServiceDTO request);
-    Table toTable(ServiceDTO request);
 
 }
