@@ -23,7 +23,7 @@ public class ServiceDTO {
     @NotNull
     @Email
     private String userId;
-
+    private Table table;
     private List<Table> tables;
 
 }

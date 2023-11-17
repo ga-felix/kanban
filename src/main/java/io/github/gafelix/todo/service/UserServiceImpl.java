@@ -2,7 +2,10 @@ package io.github.gafelix.todo.service;
 
 import io.github.gafelix.todo.request.ServiceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -10,6 +13,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRegister userRegister;
+
+    @Autowired
+    private TableWriter tableWriter;
 
     @Override
     public ServiceDTO register(ServiceDTO request) {

@@ -4,7 +4,10 @@ import io.github.gafelix.todo.exceptions.EntityAlreadyExistsException;
 import io.github.gafelix.todo.model.User;
 import io.github.gafelix.todo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class UserRegisterImpl implements UserRegister {
 
     @Autowired
