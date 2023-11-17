@@ -25,8 +25,6 @@ public class ServiceDTO {
     private String userId;
 
     @NotNull
-    private String tableId;
-
     private List<Table> tables;
 
 }
