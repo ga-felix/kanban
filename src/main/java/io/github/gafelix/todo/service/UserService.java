@@ -9,6 +9,8 @@ public interface UserService {
 
     ServiceDTO register(ServiceDTO request);
     ServiceDTO login(ServiceDTO request);
-    ServiceDTO modifyTable(ServiceDTO request);
+    ServiceDTO addTables(ServiceDTO request);
+    ServiceDTO removeTables(ServiceDTO request);
+    ServiceDTO getTables(ServiceDTO request);
 
 }

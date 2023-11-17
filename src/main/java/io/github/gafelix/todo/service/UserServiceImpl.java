@@ -29,7 +29,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ServiceDTO modifyTable(ServiceDTO request) {
+    public ServiceDTO addTables(ServiceDTO request) {
+        return null;
+    }
+    @Override
+    public ServiceDTO removeTables(ServiceDTO request) {
+        return null;
+    }
+    @Override
+    public ServiceDTO getTables(ServiceDTO request) {
         return null;
     }
 }
