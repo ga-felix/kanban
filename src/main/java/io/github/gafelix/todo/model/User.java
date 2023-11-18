@@ -14,7 +14,6 @@ import static io.github.gafelix.todo.config.ModelConstraints.USERNAME_MAX_TABLES
 @Builder
 public class User {
 
-    private String username;
     @Id
     private String id;
     private final List<String> knownTablesIds = new ArrayList<>(USERNAME_MAX_TABLES);

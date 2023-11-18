@@ -1,13 +1,13 @@
 package io.github.gafelix.todo.service;
 
 
-import io.github.gafelix.todo.request.ServiceDTO;
+import io.github.gafelix.todo.request.ServiceDto;
 
 public interface UserService {
 
-    ServiceDTO register(ServiceDTO request);
-    ServiceDTO writeTable(ServiceDTO request);
-    ServiceDTO deleteTable(ServiceDTO request);
-    ServiceDTO getTables(ServiceDTO request);
+    ServiceDto register(ServiceDto request);
+    ServiceDto writeTable(ServiceDto request);
+    ServiceDto deleteTable(ServiceDto request);
+    ServiceDto getTables(ServiceDto request);
 
 }

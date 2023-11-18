@@ -18,7 +18,7 @@ public class Table {
 
     @Getter
     @Builder
-    private static class Column {
+    public static class Column {
 
         private String label;
         private final List<Card> cards = new LinkedList<>();
