@@ -31,7 +31,7 @@ public class UserControllerTest {
     @Test
     void givenValidUser_whenRegistering_thenReturnLocationAndCreated() throws Exception {
         var payload = format(
-                "{\"username\": \"%s\", \"userId\": \"%s\"}", "banana", "cyborg24@email.com");
+                "{\"userId\": \"%s\"}", "cyborg24@email.com");
         var resourceUri = UriComponentsBuilder
                 .fromPath("/user/{id}")
                 .buildAndExpand("cyborg24@email.com")
@@ -46,8 +46,7 @@ public class UserControllerTest {
 
     @Test
     void givenUserWithMissingFields_whenRegistering_thenReturnBadRequest() throws Exception {
-        var payload = format(
-                "{\"userId\": \"%s\"}", "banana");
+        var payload = format("");
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
@@ -57,8 +56,7 @@ public class UserControllerTest {
 
     @Test
     void givenUserWithInvalidFields_whenRegistering_thenReturnBadRequest() throws Exception {
-        var payload = format(
-                "{\"username\": \"%s\",\"userId\": \"%s\"}", "banana", "123");
+        var payload = format("{\"userId\": \"%s\"}", "123");
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))
@@ -68,8 +66,7 @@ public class UserControllerTest {
 
     @Test
     void givenAlreadyExistingUser_whenRegistering_thenReturnBadRequest() throws Exception {
-        var payload = format(
-                "{\"username\": \"%s\", \"userId\": \"%s\"}", "banana", "cyborg24@email.com");
+        var payload = format("{\"userId\": \"%s\"}", "cyborg24@email.com");
         when(userService.register(Mockito.any(ServiceDto.class))).thenThrow(new EntityAlreadyExistsException());
         this.mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
