@@ -17,8 +17,9 @@ public class TableWriterImpl implements TableWriter {
     private TableRepository tableRepository;
     @Override
     public Table writeTable(Table newTable, String userId) {
+        var table = addNewTable(newTable);
         addTableReferenceToUser(newTable, userId);
-        return addNewTable(newTable);
+        return table;
     }
     
     private void addTableReferenceToUser(Table newTable, String userId) {
