@@ -34,17 +34,17 @@ class UserTableRemoverImpTest {
     private final Table table = UserTableImpTestParameters.table;
     @Test
     void givenValidUserIdAndKnownTableId_whenRemoving_thenRemoveTableFromUserAndDB() {
+        existentUser.getKnownTablesIds().add(table.getId());
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.findById(table.getId())).thenReturn(Optional.of(table));
-        existentUser.getKnownTablesIds().add(table.getId());
         assertEquals(table, tableRemover.deleteTable(table.getId(), existentUser.getId()));
     }
 
     @Test
     void givenValidUserIdAndNotKnownTableId_whenRemoving_thenThrowIllegalArgumentException() {
+        existentUser.getKnownTablesIds().clear();
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.findById(table.getId())).thenReturn(Optional.of(table));
-        existentUser.getKnownTablesIds().clear();
         assertThrows(IllegalArgumentException.class, () -> tableRemover.deleteTable(table.getId(), existentUser.getId()));
     }
 
