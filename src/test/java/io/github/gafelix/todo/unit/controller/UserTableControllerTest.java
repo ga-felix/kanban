@@ -1,10 +1,8 @@
 package io.github.gafelix.todo.unit.controller;
 
 import io.github.gafelix.todo.controller.UserController;
-import io.github.gafelix.todo.repository.UserRepository;
 import io.github.gafelix.todo.service.UserService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,7 +15,6 @@ import java.util.NoSuchElementException;
 
 import static java.lang.String.format;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;

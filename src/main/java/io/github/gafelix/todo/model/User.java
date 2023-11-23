@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static io.github.gafelix.todo.config.ModelConstraints.USERNAME_MAX_TABLES;
 
 
 @Getter

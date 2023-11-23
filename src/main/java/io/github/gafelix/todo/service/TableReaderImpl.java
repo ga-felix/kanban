@@ -1,13 +1,11 @@
 package io.github.gafelix.todo.service;
 
 import io.github.gafelix.todo.model.Table;
-import io.github.gafelix.todo.model.User;
 import io.github.gafelix.todo.repository.TableRepository;
 import io.github.gafelix.todo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 
 

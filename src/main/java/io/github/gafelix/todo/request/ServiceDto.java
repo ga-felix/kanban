@@ -9,7 +9,7 @@ import lombok.Getter;
 
 import java.util.List;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.*;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 import static io.github.gafelix.todo.config.ModelConstraints.EMAIL_MAX_SIZE;
 import static io.github.gafelix.todo.config.ModelConstraints.EMAIL_MIN_SIZE;
 
