@@ -16,6 +16,6 @@ public class User {
 
     @Id
     private String id;
-    private final List<String> knownTablesIds = new ArrayList<>(USERNAME_MAX_TABLES);
+    private List<String> knownTablesIds;
 
 }
