@@ -3,6 +3,7 @@ package io.github.gafelix.todo.config;
 import io.github.gafelix.todo.exceptions.EntityAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,7 +26,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(buildResponse(ex), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({HttpMessageNotReadableException.class, EntityAlreadyExistsException.class, MethodArgumentNotValidException.class})
+    @ExceptionHandler({HttpMessageNotReadableException.class, EntityAlreadyExistsException.class, MethodArgumentNotValidException.class, HttpMessageConversionException.class})
     public ResponseEntity<Object> handleBadRequestExceptions(Exception ex) {
         return new ResponseEntity<>(buildResponse(ex), HttpStatus.BAD_REQUEST);
     }
