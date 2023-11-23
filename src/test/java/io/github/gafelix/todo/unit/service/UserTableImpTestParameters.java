@@ -4,6 +4,7 @@ import io.github.gafelix.todo.model.Card;
 import io.github.gafelix.todo.model.Table;
 import io.github.gafelix.todo.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,6 +12,7 @@ public class UserTableImpTestParameters {
 
     protected static final User existentUser = User.builder()
             .id("iLoveBarnacles@email.com")
+            .knownTablesIds(new ArrayList<>())
             .build();
 
     protected static final List<String> tableIds = List.of("1");
