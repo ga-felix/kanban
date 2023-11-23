@@ -52,13 +52,14 @@ public class UserController {
                 .userId(userId)
                 .table(table)
                 .build();
+        var response = userService.writeTable(request);
         var uri = UriComponentsBuilder
-                .fromPath("/user/{userId}/table")
-                .buildAndExpand(request.getUserId())
+                .fromPath("/user/{userId}/table/{tableId}")
+                .buildAndExpand(request.getUserId(), response.getTable().getId())
                 .toUri();
         return ResponseEntity
                 .created(uri)
-                .body(userService.writeTable(request));
+                .body(response);
     }
 
     @DeleteMapping("/user/{userId}/table/{tableId}")
