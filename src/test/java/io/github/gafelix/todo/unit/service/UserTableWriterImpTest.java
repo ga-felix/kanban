@@ -46,7 +46,6 @@ class UserTableWriterImpTest {
         existentUser.getKnownTablesIds().clear();
         existentUser.getKnownTablesIds().addAll(List.of("", "", "", "", "", "", "", ""));
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
-        when(tableRepository.save(table)).thenReturn(table);
         assertThrows(SizeLimitExceededException.class, () -> tableWriter.writeTable(table, existentUser.getId()));
     }
 
