@@ -47,7 +47,7 @@ public class UserController {
             @PathVariable(value = "userId")
             @Size(min = EMAIL_MIN_SIZE, max = EMAIL_MAX_SIZE)
             @Email String userId,
-            @RequestBody Table table) {
+            @Valid @RequestBody Table table) {
         var request = ServiceDto.builder()
                 .userId(userId)
                 .table(table)

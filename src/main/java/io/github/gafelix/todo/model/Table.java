@@ -1,5 +1,7 @@
 package io.github.gafelix.todo.model;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,7 +17,8 @@ public class Table {
 
     @Id
     private String id;
-    private List<Column> columns;
+    @NotEmpty
+    private List<@NotNull Column> columns;
 
     @Getter
     @Builder
