@@ -4,6 +4,6 @@ import io.github.gafelix.todo.model.Table;
 
 public interface TableRemover {
 
-    Table deleteTable(String tableId, String userId);
+    void deleteTable(String tableId, String userId);
 
 }

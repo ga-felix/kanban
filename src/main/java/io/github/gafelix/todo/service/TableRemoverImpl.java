@@ -20,17 +20,15 @@ public class TableRemoverImpl implements TableRemover {
     private TableRepository tableRepository;
 
     @Override
-    public Table deleteTable(String tableId, String userId) {
+    public void deleteTable(String tableId, String userId) {
         var existentUser = userRepository.findById(userId).orElseThrow();
         if(!belongsToUser(tableId, existentUser)) throw new IllegalArgumentException();
-        var table = tableRepository.findById(tableId).orElseThrow();
-        deleteTableReferenceFromUser(table, existentUser);
-        tableRepository.delete(table);
-        return table;
+        tableRepository.deleteById(tableId);
+        deleteTableReferenceFromUser(tableId, existentUser);
     }
 
-    private void deleteTableReferenceFromUser(Table table, User existentUser) {
-        existentUser.getKnownTablesIds().remove(table.getId());
+    private void deleteTableReferenceFromUser(String tableId, User existentUser) {
+        existentUser.getKnownTablesIds().remove(tableId);
         userRepository.save(existentUser);
     }
     private boolean belongsToUser(String tableId, User user) {

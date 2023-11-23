@@ -42,10 +42,8 @@ public class UserServiceImpl implements UserService { // TODO: Testes para os no
 
     @Override
     public ServiceDto deleteTable(ServiceDto request) {
-        var table = tableRemover.deleteTable(request.getTableId(), request.getUserId());
+        tableRemover.deleteTable(request.getTableId(), request.getUserId());
         return ServiceDto.builder()
-                .userId(request.getUserId())
-                .table(table)
                 .build();
     }
 

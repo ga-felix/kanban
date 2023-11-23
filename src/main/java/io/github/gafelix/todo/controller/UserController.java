@@ -73,8 +73,10 @@ public class UserController {
                 .userId(userId)
                 .tableId(tableId)
                 .build();
+        userService.deleteTable(request);
         return ResponseEntity
-                .ok(userService.deleteTable(request));
+                .noContent()
+                .build();
     }
 
 }
