@@ -37,24 +37,9 @@ class UserTableReaderImpTest {
     private final List<Table> tables = UserTableImpTestParameters.tables;
 
     @Test
-    void givenValidUserIdAndTableIds_whenReading_thenReturnAllTables() {
-        existentUser.getKnownTablesIds().addAll(tableIds);
-        when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
-        when(tableRepository.findAllById(tableIds)).thenReturn(tables);
-        assertEquals(tables, tableReader.getAllTables(tableIds, existentUser.getId()));
-    }
-
-    @Test
-    void givenValidUserIdAndNotKnownTableIds_whenReading_thenThrowIllegalArgumentException() {
-        existentUser.getKnownTablesIds().clear();
-        when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
-        when(tableRepository.findAllById(tableIds)).thenReturn(tables);
-        assertThrows(IllegalArgumentException.class, () -> tableReader.getAllTables(tableIds, existentUser.getId()));
-    }
-    @Test
     void givenInvalidUserIdTableIds_whenReading_thenThrowNoSuchElementException() {
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.empty());
-        assertThrows(NoSuchElementException.class, () -> tableReader.getAllTables(tableIds, existentUser.getId()));
+        assertThrows(NoSuchElementException.class, () -> tableReader.getAllTables(existentUser.getId()));
     }
 
     @Test

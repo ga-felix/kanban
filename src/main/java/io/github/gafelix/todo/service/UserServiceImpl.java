@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService { // TODO: Testes para os no
 
     @Override
     public ServiceDto getTables(ServiceDto request) {
-        var tables = tableReader.getAllTables(request.getTableIds(), request.getUserId());
+        var tables = tableReader.getAllTables(request.getUserId());
         return ServiceDto.builder()
                 .userId(request.getUserId())
                 .tables(tables)

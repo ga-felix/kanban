@@ -21,19 +21,9 @@ public class TableReaderImpl implements TableReader {
     private UserRepository userRepository;
 
     @Override
-    public List<Table> getAllTables(List<String> tableIds, String userId) {
-        var user = userRepository.findById(userId).orElseThrow();
-        if(!belongsToUser(tableIds, user)) throw new IllegalArgumentException();
-        return tableRepository.findAllById(tableIds);
-    }
-
-    @Override
     public List<Table> getAllTables(String userId) {
         var user = userRepository.findById(userId).orElseThrow();
         return tableRepository.findAllById(user.getKnownTablesIds());
     }
 
-    private boolean belongsToUser(List<String> tableIds, User user) {
-        return (new HashSet<>(user.getKnownTablesIds()).containsAll(tableIds));
-    }
 }
