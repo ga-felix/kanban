@@ -1,5 +1,6 @@
 package io.github.gafelix.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
@@ -16,6 +17,7 @@ import java.util.List;
 public class Table {
 
     @Id
+    @JsonIgnore
     private String id;
     @NotEmpty
     private List<@NotNull Column> columns;
