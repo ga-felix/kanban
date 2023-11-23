@@ -5,6 +5,7 @@ import io.github.gafelix.todo.repository.TableRepository;
 import io.github.gafelix.todo.repository.UserRepository;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.naming.SizeLimitExceededException;
@@ -31,7 +32,7 @@ public class TableWriterImpl implements TableWriter {
     @SneakyThrows
     private void addTableReferenceToUser(Table newTable, String userId) {
         var existentUser = userRepository.findById(userId).orElseThrow();
-        if (existentUser.getKnownTablesIds().size() > TABLE_MAXIMUM) throw new SizeLimitExceededException();
+        if (existentUser.getKnownTablesIds().size() >= TABLE_MAXIMUM) throw new SizeLimitExceededException();
         existentUser.getKnownTablesIds().add(newTable.getId());
         userRepository.save(existentUser);
     }

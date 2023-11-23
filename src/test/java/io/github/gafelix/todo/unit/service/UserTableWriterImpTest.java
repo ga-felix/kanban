@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import javax.naming.SizeLimitExceededException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -46,7 +47,7 @@ class UserTableWriterImpTest {
         existentUser.getKnownTablesIds().addAll(List.of("", "", "", "", "", "", "", ""));
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.save(table)).thenReturn(table);
-        assertEquals(table, tableWriter.writeTable(table, existentUser.getId()));
+        assertThrows(SizeLimitExceededException.class, () -> tableWriter.writeTable(table, existentUser.getId()));
     }
 
     @Test
