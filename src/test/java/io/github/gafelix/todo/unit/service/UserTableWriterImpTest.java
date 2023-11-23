@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -34,6 +35,15 @@ class UserTableWriterImpTest {
     private final Table table = UserTableImpTestParameters.table;
     @Test
     void givenValidUserIdAndTable_whenWriting_thenUpdateTableForUse() {
+        when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
+        when(tableRepository.save(table)).thenReturn(table);
+        assertEquals(table, tableWriter.writeTable(table, existentUser.getId()));
+    }
+
+    @Test
+    void givenValidUserWithMaximumTablesIdAndTable_whenWriting_thenUpdateTableForUse() {
+        existentUser.getKnownTablesIds().clear();
+        existentUser.getKnownTablesIds().addAll(List.of("", "", "", "", "", "", "", ""));
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.save(table)).thenReturn(table);
         assertEquals(table, tableWriter.writeTable(table, existentUser.getId()));
