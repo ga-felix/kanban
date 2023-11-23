@@ -34,6 +34,7 @@ class UserTableRemoverImpTest {
     private final Table table = UserTableImpTestParameters.table;
     @Test
     void givenValidUserIdAndKnownTableId_whenRemoving_thenRemoveTableFromUserAndDB() {
+        existentUser.getKnownTablesIds().clear();
         existentUser.getKnownTablesIds().add(table.getId());
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.findById(table.getId())).thenReturn(Optional.of(table));

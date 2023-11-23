@@ -44,6 +44,7 @@ class UserTableReaderImpTest {
 
     @Test
     void givenValidUserId_whenReading_thenReturnAllTables() {
+        existentUser.getKnownTablesIds().clear();
         existentUser.getKnownTablesIds().addAll(tableIds);
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.findAllById(tableIds)).thenReturn(tables);
