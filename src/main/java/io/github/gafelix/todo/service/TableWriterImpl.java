@@ -15,17 +15,18 @@ public class TableWriterImpl implements TableWriter {
 
     @Autowired
     private TableRepository tableRepository;
+
     @Override
     public Table writeTable(Table newTable, String userId) {
         var table = addNewTable(newTable);
         addTableReferenceToUser(newTable, userId);
         return table;
     }
-    
+
     private void addTableReferenceToUser(Table newTable, String userId) {
-            var existentUser = userRepository.findById(userId).orElseThrow();
-            existentUser.getKnownTablesIds().add(newTable.getId());
-            userRepository.save(existentUser);
+        var existentUser = userRepository.findById(userId).orElseThrow();
+        existentUser.getKnownTablesIds().add(newTable.getId());
+        userRepository.save(existentUser);
     }
 
     private Table addNewTable(Table newTable) {
