@@ -50,7 +50,7 @@ class UserTableRemoverImpTest {
     }
 
     @Test
-    void givenInvalidUserId_whenRemoving_thenThrowIllegalArgumentException() {
+    void givenInvalidUserId_whenRemoving_thenThrowNoSuchElementException() {
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.empty());
         assertThrows(NoSuchElementException.class, () -> tableRemover.deleteTable(table.getId(), existentUser.getId()));
     }
