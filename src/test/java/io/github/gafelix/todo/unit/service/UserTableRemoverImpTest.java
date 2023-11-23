@@ -38,7 +38,7 @@ class UserTableRemoverImpTest {
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.findById(table.getId())).thenReturn(Optional.of(table));
         tableRemover.deleteTable(table.getId(), existentUser.getId());
-        assertTrue(true);
+        assertTrue(existentUser.getKnownTablesIds().isEmpty());
     }
 
     @Test
