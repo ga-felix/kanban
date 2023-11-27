@@ -28,7 +28,6 @@ public class UserControllerTest {
 
     @MockBean
     private UserService userService;
-
     @Test
     void givenValidUser_whenRegistering_thenReturnLocationAndCreated() throws Exception {
         var payload = format(

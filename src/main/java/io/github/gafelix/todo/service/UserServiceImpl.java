@@ -1,6 +1,5 @@
 package io.github.gafelix.todo.service;
 
-import io.github.gafelix.todo.model.Table;
 import io.github.gafelix.todo.request.ServiceDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 import org.springframework.beans.factory.annotation.Autowired;

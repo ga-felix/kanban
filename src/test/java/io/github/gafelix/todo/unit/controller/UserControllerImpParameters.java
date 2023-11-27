@@ -2,6 +2,7 @@ package io.github.gafelix.todo.unit.controller;
 
 import io.github.gafelix.todo.model.Card;
 import io.github.gafelix.todo.model.Table;
+import io.github.gafelix.todo.request.ServiceDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 
 import java.util.List;
@@ -24,5 +25,7 @@ public class UserControllerImpParameters {
                                                     .build()))
                                     .build()
                     ).build();
+
+    protected static final ServiceDto emptyResponse = ServiceDto.builder().build();
 
 }

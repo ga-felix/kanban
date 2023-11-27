@@ -1,6 +1,5 @@
 package io.github.gafelix.todo.controller;
 
-import io.github.gafelix.todo.model.Table;
 import io.github.gafelix.todo.request.ServiceDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 import io.github.gafelix.todo.service.UserService;

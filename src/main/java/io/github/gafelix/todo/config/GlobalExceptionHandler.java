@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,7 +31,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(buildResponse(ex), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({EntityAlreadyExistsException.class})
+    @ExceptionHandler({EntityAlreadyExistsException.class, IllegalArgumentException.class})
     public ResponseEntity<Object> handleBadRequestExceptions(Exception ex) {
         return new ResponseEntity<>(buildResponse(ex), HttpStatus.BAD_REQUEST);
     }

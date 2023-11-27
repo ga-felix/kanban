@@ -16,6 +16,7 @@ import java.util.NoSuchElementException;
 import static io.github.gafelix.todo.unit.controller.UserControllerImpParameters.*;
 import static java.lang.String.format;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -63,4 +64,26 @@ public class UserTableControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    void givenValidUserIdAndValidTableId_whenDeletion_thenReturnNoContent() throws Exception {
+        when(userService.deleteTable(Mockito.any())).thenReturn(emptyResponse);
+        this.mockMvc.perform(delete(format("/user/%s/table/%s", "cyborg24@email.com", "1")))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
+    @Test
+    void givenInvalidUserIdAndValidTableId_whenDeletion_thenReturnNotFound() throws Exception {
+        when(userService.deleteTable(Mockito.any())).thenThrow(new NoSuchElementException());
+        this.mockMvc.perform(delete(format("/user/%s/table/%s", "Idontexist@email.com", "1")))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void givenValidUserIdAndInvalidTableId_whenDeletion_thenReturnBadRequest() throws Exception {
+        when(userService.deleteTable(Mockito.any())).thenThrow(new IllegalArgumentException());
+        this.mockMvc.perform(delete(format("/user/%s/table/%s", "cyborg24@email.com", "0")))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
 }
