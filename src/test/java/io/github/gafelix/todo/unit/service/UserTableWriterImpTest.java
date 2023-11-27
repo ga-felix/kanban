@@ -35,6 +35,7 @@ class UserTableWriterImpTest {
     private final Table table = UserTableImpTestParameters.table;
     @Test
     void givenValidUserIdAndTable_whenWriting_thenUpdateTableForUse() {
+        existentUser.getKnownTablesIds().clear();
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.save(table)).thenReturn(table);
         assertEquals(table, tableWriter.writeTable(table, existentUser.getId()));
