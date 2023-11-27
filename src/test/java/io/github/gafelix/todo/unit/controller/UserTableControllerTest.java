@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.NoSuchElementException;
 
+import static io.github.gafelix.todo.unit.controller.UserControllerImpParameters.*;
 import static java.lang.String.format;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -32,25 +33,24 @@ public class UserTableControllerTest {
 
     @Test
     void givenValidUserAndTable_whenPutting_thenReturnCreatedAndTable() throws Exception {
-        var body = "{\"id\": \"1\", \"columns\": [{\"label\": \"testColumn\",\"cards\": [{\"title\": \"whateverTask\",\"description\": \"haveYouRestedToday?\"}]}]}";
+        when(userService.writeTable(Mockito.any())).thenReturn(response);
         var resourceUri = UriComponentsBuilder
                 .fromPath("/user/{userId}/table/1")
                 .buildAndExpand("cyborg24@email.com")
                 .toUriString();
         this.mockMvc.perform(put(format("/user/%s/table", "cyborg24@email.com"))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
+                        .content(tableBody))
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", resourceUri));
     }
     @Test
     void givenInvalidUser_whenPutting_thenReturnNotFound() throws Exception {
-        var body = "{\"id\": \"1\", \"columns\": [{\"label\": \"testColumn\",\"cards\": [{\"title\": \"whateverTask\",\"description\": \"haveYouRestedToday?\"}]}]}";
         when(userService.writeTable(Mockito.any())).thenThrow(new NoSuchElementException());
         this.mockMvc.perform(put(format("/user/%s/table", "cyborg24@email.com"))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
+                        .content(tableBody))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
@@ -58,7 +58,7 @@ public class UserTableControllerTest {
     void givenBodyMissingFields_whenPutting_thenReturnBadRequest() throws Exception {
         this.mockMvc.perform(put(format("/user/%s/table", "cyborg24@email.com"))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(""))
+                        .content(emptyBody))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }

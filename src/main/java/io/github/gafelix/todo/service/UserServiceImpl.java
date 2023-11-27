@@ -1,6 +1,8 @@
 package io.github.gafelix.todo.service;
 
+import io.github.gafelix.todo.model.Table;
 import io.github.gafelix.todo.request.ServiceDto;
+import io.github.gafelix.todo.request.TableWriterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +34,9 @@ public class UserServiceImpl implements UserService { // TODO: Testes para os no
     }
 
     @Override
-    public ServiceDto writeTable(ServiceDto request) {
+    public TableWriterDto writeTable(TableWriterDto request) {
         var table = tableWriter.writeTable(request.getTable(), request.getUserId());
-        return ServiceDto.builder()
+        return TableWriterDto.builder()
                 .userId(request.getUserId())
                 .table(table)
                 .build();

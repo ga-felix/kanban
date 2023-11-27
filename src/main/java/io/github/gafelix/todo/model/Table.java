@@ -1,6 +1,5 @@
 package io.github.gafelix.todo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

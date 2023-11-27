@@ -2,6 +2,7 @@ package io.github.gafelix.todo.controller;
 
 import io.github.gafelix.todo.model.Table;
 import io.github.gafelix.todo.request.ServiceDto;
+import io.github.gafelix.todo.request.TableWriterDto;
 import io.github.gafelix.todo.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -43,14 +44,14 @@ public class UserController {
     }
 
     @PutMapping("/user/{userId}/table")
-    public ResponseEntity<ServiceDto> writeUserTable(
+    public ResponseEntity<TableWriterDto> writeUserTable(
             @PathVariable(value = "userId")
             @Size(min = EMAIL_MIN_SIZE, max = EMAIL_MAX_SIZE)
             @Email String userId,
-            @Valid @RequestBody Table table) {
-        var request = ServiceDto.builder()
+            @Valid @RequestBody TableWriterDto body) {
+        var request = TableWriterDto.builder()
                 .userId(userId)
-                .table(table)
+                .table(body.getTable())
                 .build();
         var response = userService.writeTable(request);
         var uri = UriComponentsBuilder

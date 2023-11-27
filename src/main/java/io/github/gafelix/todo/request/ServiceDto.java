@@ -26,6 +26,5 @@ public class ServiceDto {
     private String tableId;
     private Table table;
     private List<Table> tables;
-    private List<String> tableIds;
 
 }
