@@ -15,8 +15,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(TableWriter.class)
@@ -39,6 +38,7 @@ class UserTableWriterImpTest {
         when(userRepository.findById(existentUser.getId())).thenReturn(Optional.of(existentUser));
         when(tableRepository.save(table)).thenReturn(table);
         assertEquals(table, tableWriter.writeTable(table, existentUser.getId()));
+        assertFalse(existentUser.getKnownTablesIds().isEmpty());
     }
 
     @Test
