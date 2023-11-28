@@ -2,7 +2,7 @@ package io.github.gafelix.todo.unit.controller;
 
 import io.github.gafelix.todo.model.Card;
 import io.github.gafelix.todo.model.Table;
-import io.github.gafelix.todo.request.ServiceDto;
+import io.github.gafelix.todo.request.TableDeleterDto;
 import io.github.gafelix.todo.request.TableReaderDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 
@@ -27,7 +27,7 @@ public class UserControllerImpParameters {
                                     .build()
                     ).build();
 
-    protected static final ServiceDto emptyResponse = ServiceDto.builder().build();
+    protected static final TableDeleterDto emptyResponse = TableDeleterDto.builder().build();
     protected static final List<Table> tables = List.of(
             Table.builder()
                     .id("1")

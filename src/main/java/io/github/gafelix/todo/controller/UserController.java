@@ -1,6 +1,7 @@
 package io.github.gafelix.todo.controller;
 
-import io.github.gafelix.todo.request.ServiceDto;
+import io.github.gafelix.todo.request.UserRegisterDto;
+import io.github.gafelix.todo.request.TableDeleterDto;
 import io.github.gafelix.todo.request.TableReaderDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 import io.github.gafelix.todo.service.UserService;
@@ -21,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user")
-    public ResponseEntity<ServiceDto> createUser(@Valid @RequestBody ServiceDto request) {
+    public ResponseEntity<UserRegisterDto> createUser(@Valid @RequestBody UserRegisterDto request) {
         var uri = UriComponentsBuilder
                 .fromPath("/user/{userId}")
                 .buildAndExpand(request.getUserId())
@@ -64,13 +65,13 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{userId}/table/{tableId}")
-    public ResponseEntity<ServiceDto> deleteUserTable(
+    public ResponseEntity<TableDeleterDto> deleteUserTable(
             @PathVariable(value = "userId")
             @Size(min = EMAIL_MIN_SIZE, max = EMAIL_MAX_SIZE)
             @Email String userId,
             @PathVariable(value = "tableId")
             @Size(max = TABLE_MAX_ID_SIZE) String tableId) {
-        var request = ServiceDto.builder()
+        var request = TableDeleterDto.builder()
                 .userId(userId)
                 .tableId(tableId)
                 .build();

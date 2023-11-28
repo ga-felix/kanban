@@ -1,6 +1,7 @@
 package io.github.gafelix.todo.service;
 
-import io.github.gafelix.todo.request.ServiceDto;
+import io.github.gafelix.todo.request.UserRegisterDto;
+import io.github.gafelix.todo.request.TableDeleterDto;
 import io.github.gafelix.todo.request.TableReaderDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class UserServiceImpl implements UserService { // TODO: Testes para os no
     private TableReader tableReader;
 
     @Override
-    public ServiceDto register(ServiceDto request) {
+    public UserRegisterDto register(UserRegisterDto request) {
         var newUser = userRegister.register(dtoMapper.toUser(request));
-        return ServiceDto.builder()
+        return UserRegisterDto.builder()
                 .userId(newUser.getId())
                 .build();
     }
@@ -43,10 +44,9 @@ public class UserServiceImpl implements UserService { // TODO: Testes para os no
     }
 
     @Override
-    public ServiceDto deleteTable(ServiceDto request) {
+    public TableDeleterDto deleteTable(TableDeleterDto request) {
         tableRemover.deleteTable(request.getTableId(), request.getUserId());
-        return ServiceDto.builder()
-                .build();
+        return TableDeleterDto.builder().build();
     }
 
     @Override
