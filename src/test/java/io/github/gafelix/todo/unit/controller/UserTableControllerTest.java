@@ -93,4 +93,11 @@ public class UserTableControllerTest {
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
+    @Test
+    void givenValidUserId_whenGetting_thenReturnOk() throws Exception {
+        when(userService.getTables(Mockito.any())).thenReturn(readerResponse);
+        this.mockMvc.perform(get(format("/user/%s/tables", "cyborg24@email.com")))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }
