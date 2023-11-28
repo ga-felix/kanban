@@ -89,7 +89,7 @@ public class UserTableControllerTest {
     @Test
     void givenInvalidUserId_whenGetting_thenReturnNotFound() throws Exception {
         when(userService.getTables(Mockito.any())).thenThrow(new NoSuchElementException());
-        this.mockMvc.perform(get(format("/user/%s", "cyborg24@email.com")))
+        this.mockMvc.perform(get(format("/user/%s/tables", "cyborg24@email.com")))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
