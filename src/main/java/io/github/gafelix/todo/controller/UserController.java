@@ -1,6 +1,7 @@
 package io.github.gafelix.todo.controller;
 
 import io.github.gafelix.todo.request.ServiceDto;
+import io.github.gafelix.todo.request.TableReaderDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 import io.github.gafelix.todo.service.UserService;
 import jakarta.validation.Valid;
@@ -31,11 +32,11 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}/tables")
-    public ResponseEntity<ServiceDto> listUserTables(
+    public ResponseEntity<TableReaderDto> listUserTables(
             @PathVariable(value = "userId")
             @Size(min = EMAIL_MIN_SIZE, max = EMAIL_MAX_SIZE)
             @Email String userId) {
-        var request = ServiceDto.builder()
+        var request = TableReaderDto.builder()
                 .userId(userId)
                 .build();
         return ResponseEntity

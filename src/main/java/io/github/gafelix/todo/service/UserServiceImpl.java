@@ -1,6 +1,7 @@
 package io.github.gafelix.todo.service;
 
 import io.github.gafelix.todo.request.ServiceDto;
+import io.github.gafelix.todo.request.TableReaderDto;
 import io.github.gafelix.todo.request.TableWriterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,9 +50,9 @@ public class UserServiceImpl implements UserService { // TODO: Testes para os no
     }
 
     @Override
-    public ServiceDto getTables(ServiceDto request) {
+    public TableReaderDto getTables(TableReaderDto request) {
         var tables = tableReader.getAllTables(request.getUserId());
-        return ServiceDto.builder()
+        return TableReaderDto.builder()
                 .userId(request.getUserId())
                 .tables(tables)
                 .build();
