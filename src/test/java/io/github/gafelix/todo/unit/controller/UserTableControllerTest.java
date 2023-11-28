@@ -36,9 +36,9 @@ public class UserTableControllerTest {
         when(userService.writeTable(Mockito.any())).thenReturn(response);
         var resourceUri = UriComponentsBuilder
                 .fromPath("/user/{userId}/table/1")
-                .buildAndExpand("cyborg24@email.com")
+                .buildAndExpand(userId)
                 .toUriString();
-        this.mockMvc.perform(put(format("/user/%s/table", "cyborg24@email.com"))
+        this.mockMvc.perform(put(format("/user/%s/table", userId))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(tableBody))
                 .andDo(print())
@@ -48,7 +48,7 @@ public class UserTableControllerTest {
     @Test
     void givenInvalidUser_whenPutting_thenReturnNotFound() throws Exception {
         when(userService.writeTable(Mockito.any())).thenThrow(new NoSuchElementException());
-        this.mockMvc.perform(put(format("/user/%s/table", "cyborg24@email.com"))
+        this.mockMvc.perform(put(format("/user/%s/table", userId))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(tableBody))
                 .andDo(print())
@@ -56,7 +56,7 @@ public class UserTableControllerTest {
     }
     @Test
     void givenBodyMissingFields_whenPutting_thenReturnBadRequest() throws Exception {
-        this.mockMvc.perform(put(format("/user/%s/table", "cyborg24@email.com"))
+        this.mockMvc.perform(put(format("/user/%s/table", userId))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(emptyBody))
                 .andDo(print())
@@ -66,7 +66,7 @@ public class UserTableControllerTest {
     @Test
     void givenValidUserIdAndValidTableId_whenDeletion_thenReturnNoContent() throws Exception {
         when(userService.deleteTable(Mockito.any())).thenReturn(emptyResponse);
-        this.mockMvc.perform(delete(format("/user/%s/table/%s", "cyborg24@email.com", "1")))
+        this.mockMvc.perform(delete(format("/user/%s/table/%s", userId, "1")))
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
@@ -81,7 +81,7 @@ public class UserTableControllerTest {
     @Test
     void givenValidUserIdAndInvalidTableId_whenDeletion_thenReturnBadRequest() throws Exception {
         when(userService.deleteTable(Mockito.any())).thenThrow(new IllegalArgumentException());
-        this.mockMvc.perform(delete(format("/user/%s/table/%s", "cyborg24@email.com", "0")))
+        this.mockMvc.perform(delete(format("/user/%s/table/%s", userId, "0")))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
@@ -89,14 +89,14 @@ public class UserTableControllerTest {
     @Test
     void givenInvalidUserId_whenGetting_thenReturnNotFound() throws Exception {
         when(userService.getTables(Mockito.any())).thenThrow(new NoSuchElementException());
-        this.mockMvc.perform(get(format("/user/%s/tables", "cyborg24@email.com")))
+        this.mockMvc.perform(get(format("/user/%s/tables", userId)))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
     @Test
     void givenValidUserId_whenGetting_thenReturnOk() throws Exception {
         when(userService.getTables(Mockito.any())).thenReturn(readerResponse);
-        this.mockMvc.perform(get(format("/user/%s/tables", "cyborg24@email.com")))
+        this.mockMvc.perform(get(format("/user/%s/tables", userId)))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

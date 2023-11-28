@@ -22,7 +22,4 @@ public class ServiceDto {
     @Email
     private String userId;
     private String tableId;
-    private Table table;
-    private List<Table> tables;
-
 }

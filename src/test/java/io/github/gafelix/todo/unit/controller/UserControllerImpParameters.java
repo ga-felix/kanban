@@ -49,4 +49,6 @@ public class UserControllerImpParameters {
     protected static final TableReaderDto readerResponse = TableReaderDto.builder()
             .tables(tables)
             .build();
+
+    protected static final String userId = "cyborg24@email.com";
 }
