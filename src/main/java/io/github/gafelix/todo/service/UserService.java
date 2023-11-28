@@ -1,10 +1,10 @@
 package io.github.gafelix.todo.service;
 
 
-import io.github.gafelix.todo.request.UserRegisterDto;
 import io.github.gafelix.todo.request.TableDeleterDto;
 import io.github.gafelix.todo.request.TableReaderDto;
 import io.github.gafelix.todo.request.TableWriterDto;
+import io.github.gafelix.todo.request.UserRegisterDto;
 
 public interface UserService {
 

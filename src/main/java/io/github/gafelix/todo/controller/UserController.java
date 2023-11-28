@@ -1,9 +1,9 @@
 package io.github.gafelix.todo.controller;
 
-import io.github.gafelix.todo.request.UserRegisterDto;
 import io.github.gafelix.todo.request.TableDeleterDto;
 import io.github.gafelix.todo.request.TableReaderDto;
 import io.github.gafelix.todo.request.TableWriterDto;
+import io.github.gafelix.todo.request.UserRegisterDto;
 import io.github.gafelix.todo.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
