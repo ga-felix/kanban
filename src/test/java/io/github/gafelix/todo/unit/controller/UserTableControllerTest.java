@@ -16,8 +16,7 @@ import java.util.NoSuchElementException;
 import static io.github.gafelix.todo.unit.controller.UserControllerImpParameters.*;
 import static java.lang.String.format;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -85,5 +84,13 @@ public class UserTableControllerTest {
         this.mockMvc.perform(delete(format("/user/%s/table/%s", "cyborg24@email.com", "0")))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void givenInvalidUserId_whenGetting_thenReturnNotFound() throws Exception {
+        when(userService.getTables(Mockito.any())).thenThrow(new NoSuchElementException());
+        this.mockMvc.perform(get(format("/user/%s", "cyborg24@email.com")))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 }
